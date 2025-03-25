@@ -1,20 +1,20 @@
-// OptimizavimoMetodai_2lab.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
-
 #include <iostream>
+#include <vector>
+#include "funkcijos.h"
+
+using std::vector;
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	double a = 0;
+	double b = 0;
+	double c = 0;
+	double x1 = 2 * a * b;
+	double x2 = 2 * a * c;
+	double x3 = 2 * c * b;
+	double v2 = 1 / 8 * x1 * x2 * x3;
+	double f = 1 / 8 * (x1 * x2 - x1 * x1 * x2 - x1 * x2 * x2);
+	vector<double> fGrad = { -1.0 / 8 * (x2 - 2 * x1 * x2 - x2 * x2), -1.0 / 8 * (x1 - x1 * x1 - 2 * x1 * x2) };
+	gradientinisNusileidimas({ 0.7, 0.7 });
+
 }
-
-// Run program: Ctrl + F5 or Debug > Start Without Debugging menu
-// Debug program: F5 or Debug > Start Debugging menu
-
-// Tips for Getting Started: 
-//   1. Use the Solution Explorer window to add/manage files
-//   2. Use the Team Explorer window to connect to source control
-//   3. Use the Output window to see build output and other messages
-//   4. Use the Error List window to view errors
-//   5. Go to Project > Add New Item to create new code files, or Project > Add Existing Item to add existing code files to the project
-//   6. In the future, to open this project again, go to File > Open > Project and select the .sln file

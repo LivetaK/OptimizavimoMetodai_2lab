@@ -18,5 +18,13 @@
     <ClCompile Include="OptimizavimoMetodai_2lab.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="funkcijos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="funkcijos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
