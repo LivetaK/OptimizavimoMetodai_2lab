@@ -1,0 +1,1 @@
+# OptimizavimoMetodai_2lab
