@@ -1,7 +1,7 @@
 #include "funkcijos.h"
 
 
-vector<double> gradientas(vector<double> taskas) {
+vector<double> antigradientas(vector<double> taskas) {
 	double x1 = taskas[0];
 	double x2 = taskas[1];
 	vector<double> fGrad = { 
@@ -35,7 +35,7 @@ bool hesse(vector<double> taskas) {
 void gradientinisNusileidimas(vector<double> pradT) {
 	vector<vector<double>> visiTaskai;
 	visiTaskai.push_back(pradT);
-	vector<double> grad = gradientas(pradT);
+	vector<double> grad = antigradientas(pradT);
 	const double epsilon = 1e-6;
 	double pradGama = 1;
 	int i = 0;
@@ -46,7 +46,7 @@ void gradientinisNusileidimas(vector<double> pradT) {
 					visiTaskai.back()[1] - gamma * grad[1]
 		};
 		visiTaskai.push_back(naujasTaskas);
-		grad = gradientas(naujasTaskas);
+		grad = antigradientas(naujasTaskas);
 		i++;
 	}
 	if (hesse(visiTaskai.back()) == true) {
@@ -54,6 +54,50 @@ void gradientinisNusileidimas(vector<double> pradT) {
 		cout << "Iteraciju skaicius: " << i << endl;
 	}
 	else {
-		cout << "blogai" << endl;
+		cout << "Minimumas nebuvo rastas" << endl;
 	}
 }
+
+int salygosTikrinimas(double t1, double t2) {
+	const double minimalusPlotas = 1e-6;
+	const double maksimalusPlotas = 1.0 - 1e-6;
+
+	if (t1 < minimalusPlotas || t2 < minimalusPlotas) {
+		cerr << "Per mazas pavirsiaus plotas";
+		return 1;
+	}
+	if (t1 >= maksimalusPlotas || t2 >= maksimalusPlotas) {
+		cerr << "Pavirsiaus plotas per didelis";
+		return 1;
+	}
+}
+
+//double gammaGN(const vector<double>& taskas) {
+//	double x1 = taskas[0], x2 = taskas[1];
+//
+//}
+//
+//void greiciausiasNusileidimas(vector<double> pradT) {
+//	vector<vector<double>> visiTaskai;
+//	visiTaskai.push_back(pradT);
+//	vector<double> grad = antigradientas(pradT);
+//	const double epsilon = 1e-6;
+//	int i = 0;
+//	while (fabs(grad[0]) > epsilon || fabs(grad[1]) > epsilon) {
+//		double gamma = gammaGN(visiTaskai.back());
+//		vector<double> naujasTaskas = {
+//					visiTaskai.back()[0] - gamma * grad[0],
+//					visiTaskai.back()[1] - gamma * grad[1]
+//		};
+//		visiTaskai.push_back(naujasTaskas);
+//		grad = antigradientas(naujasTaskas);
+//		i++;
+//	}
+//	if (hesse(visiTaskai.back()) == true) {
+//		cout << "Greièiausio nusileidimo minimumo taskas: " << visiTaskai.back()[0] << "  " << visiTaskai.back()[1] << endl;
+//		cout << "Iteraciju skaicius: " << i << endl;
+//	}
+//	else {
+//		cout << "Minimumas nebuvo rastas" << endl;
+//	}
+//}
